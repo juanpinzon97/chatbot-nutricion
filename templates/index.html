@@ -93,7 +93,7 @@
 <div class="chat-container">
   <h2>🥦 NutriBot – Your AI Nutrition Advisor</h2>
 
-  <!-- Historial del chat -->
+
   <div class="chat-log" id="chat-log">
     {% for msg in chat %}
       <div class="message {{ msg.role }}">
@@ -103,13 +103,11 @@
     {% endfor %}
   </div>
 
-  <!-- Formulario para enviar nuevas preguntas -->
   <form method="post">
     <input type="text" name="question" placeholder="Ask something about nutrition..." required>
     <button type="submit">Send</button>
   </form>
 
-  <!-- Botón para reiniciar -->
   <div class="reset">
     <a href="/reset">🔁 Reset Chat</a>
   </div>
