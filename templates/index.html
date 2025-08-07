@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NutriBot – AI Nutrition Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chat-container {
+      max-width: 700px;
+      width: 100%;
+      background: white;
+      margin: 30px 0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 12px;
+      max-width: 80%;
+      line-height: 1.4em;
+    }
+
+    .user {
+      background-color: #d0eaff;
+      align-self: flex-end;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .assistant {
+      background-color: #e8f5e9;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+
+    .chat-log {
+      display: flex;
+      flex-direction: column;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      width: 75%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #0f9d58;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .reset {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .reset a {
+      color: #999;
+      font-size: 0.9em;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body onload="scrollToBottom()">
+
+<div class="chat-container">
+  <h2>🥦 NutriBot – Your AI Nutrition Advisor</h2>
+
+  <!-- Historial del chat -->
+  <div class="chat-log" id="chat-log">
+    {% for msg in chat %}
+      <div class="message {{ msg.role }}">
+        <strong>{{ "You" if msg.role == "user" else "NutriBot" }}</strong><br>
+        {{ msg.content }}
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Formulario para enviar nuevas preguntas -->
+  <form method="post">
+    <input type="text" name="question" placeholder="Ask something about nutrition..." required>
+    <button type="submit">Send</button>
+  </form>
+
+  <!-- Botón para reiniciar -->
+  <div class="reset">
+    <a href="/reset">🔁 Reset Chat</a>
+  </div>
+</div>
+
+<script>
+  function scrollToBottom() {
+    const log = document.getElementById('chat-log');
+    log.scrollTop = log.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
